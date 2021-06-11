@@ -79,3 +79,7 @@ sim title:
 基金公司谨慎看多明年市
 前期乐观预期被否 基金重归谨慎
 ```
+
+### 2. 参考
+- [SimCSE](https://github.com/princeton-nlp/SimCSE)
+- [SimCSE-Chinese](https://github.com/zhengyanzhao1997/NLP-model/tree/main/model/model/Torch_model/SimCSE-Chinese)
