@@ -64,8 +64,11 @@ optional arguments:
 #### 测试
 ```bash
 python test_unsup.py
+```
 
-query title:基金亏损路未尽 后市看法仍偏谨慎
+```
+query title:
+基金亏损路未尽 后市看法仍偏谨慎
 
 sim title:
 基金亏损路未尽 后市看法仍偏谨慎
