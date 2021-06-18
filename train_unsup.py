@@ -62,7 +62,6 @@ def compute_loss(y_pred, tao=0.05, device="cuda"):
 def train(args):
     tokenizer = BertTokenizer.from_pretrained(args.pretrained, mirror="tuna")
     dl = load_data(args, tokenizer)
-    total_cnt = len(dl.dataset)
     model = SimCSE(args.pretrained, args.pool_type, args.dropout_rate).to(args.device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 
@@ -71,8 +70,10 @@ def train(args):
         os.mkdir(model_out)
 
     model.train()
+    batch_idx = 0
     for epoch_idx in range(args.epochs):
-        for batch_idx, data in tqdm(enumerate(dl, 1)):
+        for data in tqdm(dl):
+            batch_idx += 1
             pred = model(input_ids=data["input_ids"].to(args.device),
                          attention_mask=data["attention_mask"].to(args.device),
                          token_type_ids=data["token_type_ids"].to(args.device))
@@ -80,11 +81,11 @@ def train(args):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            loss = loss.item()
             if batch_idx % args.display_interval == 0:
-                loss, current = loss.item(), batch_idx * args.batch_size
-                logging.info(f"loss: {loss:>10f}  [{current:>10d}/{total_cnt:>10d}]")
+                logging.info(f"batch_idx: {batch_idx}, loss: {loss:>10f}")
             if batch_idx % args.save_interval == 0:
-                torch.save(model.state_dict(), model_out / "epoch-{0}-batch-{1}".format(epoch_idx, batch_idx))
+                torch.save(model.state_dict(), model_out / "epoch_{0}-batch_{1}-loss_{2:.6f}".format(epoch_idx, batch_idx, loss))
 
 
 def main():
