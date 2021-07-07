@@ -22,43 +22,8 @@ python train_unsup.py ./data/news_title.txt ./path/to/huggingface_pretrained_mod
 ```
 
 *详细参数*
-```
-usage: train_unsup.py [-h] [--pretrained PRETRAINED] [--model_out MODEL_OUT]
-                      [--num_proc NUM_PROC] [--max_length MAX_LENGTH]
-                      [--batch_size BATCH_SIZE] [--epochs EPOCHS] [--lr LR]
-                      [--tao TAO] [--device DEVICE]
-                      [--display_interval DISPLAY_INTERVAL]
-                      [--save_interval SAVE_INTERVAL] [--pool_type POOL_TYPE]
-                      [--dropout_rate DROPOUT_RATE]
-                      train_file
-
-positional arguments:
-  train_file            train text file
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --pretrained PRETRAINED
-                        huggingface pretrained model (default: hfl/chinese-
-                        bert-wwm-ext)
-  --model_out MODEL_OUT
-                        model output path (default: ./model)
-  --num_proc NUM_PROC   dataset process thread num (default: 5)
-  --max_length MAX_LENGTH
-                        sentence max length (default: 100)
-  --batch_size BATCH_SIZE
-                        batch size (default: 64)
-  --epochs EPOCHS       epochs (default: 2)
-  --lr LR               learning rate (default: 1e-05)
-  --tao TAO             temperature (default: 0.05)
-  --device DEVICE       device (default: cuda)
-  --display_interval DISPLAY_INTERVAL
-                        display interval (default: 50)
-  --save_interval SAVE_INTERVAL
-                        save interval (default: 100)
-  --pool_type POOL_TYPE
-                        pool_type (default: cls)
-  --dropout_rate DROPOUT_RATE
-                        dropout_rate (default: 0.3)
+```bash
+python train_unsup.py -h
 ```
 
 #### 相似文本检索测试
